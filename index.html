@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sporty Fam</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Roboto, Arial, sans-serif; }
+body { background: #fff; color: #0f0f0f; }
+header { position: fixed; top: 0; left: 0; right: 0; height: 56px; background: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; z-index: 10; }
+.logo { font-size: 20px; font-weight: bold; display: flex; align-items: center; gap: 6px; }
+.logo span { background: #ff0000; color: #fff; padding: 2px 8px; border-radius: 6px; font-size: 16px; }
+.search { display: flex; width: 40%; max-width: 600px; }
+.search input { flex: 1; padding: 8px 14px; border: 1px solid #ccc; border-radius: 20px 0 0 20px; font-size: 16px; outline: none; }
+.search button { padding: 0 20px; border: 1px solid #ccc; border-left: none; background: #f8f8f8; border-radius: 0 20px 20px 0; cursor: pointer; }
+.avatar { width: 32px; height: 32px; border-radius: 50%; background: #065fd4; color: #fff; display: flex; align-items: center; justify-content: center; }
+nav { position: fixed; top: 56px; left: 0; bottom: 0; width: 200px; padding: 12px; background: #fff; overflow-y: auto; }
+nav a { display: block; padding: 10px 12px; border-radius: 10px; color: #0f0f0f; text-decoration: none; font-size: 14px; }
+nav a:hover, nav a.active { background: #f2f2f2; }
+main { margin-left: 200px; padding: 80px 24px 24px; }
+.chips { display: flex; gap: 12px; margin-bottom: 20px; overflow-x: auto; }
+.chip { padding: 6px 14px; background: #f2f2f2; border-radius: 8px; font-size: 14px; cursor: pointer; white-space: nowrap; }
+.chip.active { background: #0f0f0f; color: #fff; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.card { cursor: pointer; }
+.card iframe { width: 100%; aspect-ratio: 16/9; border: none; border-radius: 12px; }
+.card h3 { font-size: 16px; margin-top: 10px; }
+.card p { font-size: 13px; color: #606060; margin-top: 4px; }
+@media (max-width: 800px) {
+  nav { display: none; }
+  main { margin-left: 0; padding: 76px 12px 12px; }
+  .search { width: 55%; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span>▶</span> Sporty Fam</div>
+  <div class="search">
+    <input type="text" id="q" placeholder="Search" oninput="filter()">
+    <button>🔍</button>
+  </div>
+  <div class="avatar">S</div>
+</header>
+
+<nav>
+  <a class="active" href="#">🏠 Home</a>
+  <a href="#">🔥 Trending</a>
+  <a href="#">🏏 Cricket</a>
+  <a href="#">⚽ Football</a>
+  <a href="#">🏸 Other Sports</a>
+  <a href="#">📺 Subscriptions</a>
+</nav>
+
+<main>
+  <div class="chips">
+    <div class="chip active">All</div>
+    <div class="chip">Cricket</div>
+    <div class="chip">Football</div>
+    <div class="chip">Highlights</div>
+    <div class="chip">Training</div>
+  </div>
+
+  <div class="grid" id="grid">
+    <!-- हर वीडियो के लिए एक card। VIDEO_ID की जगह YouTube वीडियो की ID डालिए -->
+    <div class="card" data-title="video one">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+      <h3>Video One</h3>
+      <p>Sporty Fam</p>
+    </div>
+    <div class="card" data-title="video two">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+      <h3>Video Two</h3>
+      <p>Sporty Fam</p>
+    </div>
+    <div class="card" data-title="video three">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+      <h3>Video Three</h3>
+      <p>Sporty Fam</p>
+    </div>
+  </div>
+</main>
+
+<script>
+function filter() {
+  var q = document.getElementById('q').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(function(c) {
+    c.style.display = c.dataset.title.indexOf(q) > -1 ? '' : 'none';
+  });
+}
+</script>
+</body>
+  </html>
